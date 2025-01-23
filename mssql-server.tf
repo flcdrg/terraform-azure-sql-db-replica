@@ -23,9 +23,10 @@ resource "azurerm_mssql_server" "mssql" {
   }
 }
 
-resource "azurerm_mssql_firewall_rule" "azure_services" {
-  name             = "AllowAzure"
-  server_id        = azurerm_mssql_server.mssql.id
-  start_ip_address = "0.0.0.0"
-  end_ip_address   = "0.0.0.0"
-}
+# Can't have this if public_network_access_enabled is false
+# resource "azurerm_mssql_firewall_rule" "azure_services" {
+#   name             = "AllowAzure"
+#   server_id        = azurerm_mssql_server.mssql.id
+#   start_ip_address = "0.0.0.0"
+#   end_ip_address   = "0.0.0.0"
+# }
