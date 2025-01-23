@@ -7,8 +7,3 @@ variable "mssql_azuread_administrator_object_id" {
 variable "mssql_administrator_login" {
   type = string
 }
-
-variable "mssql_administrator_password" {
-  type      = string
-  sensitive = true
-}

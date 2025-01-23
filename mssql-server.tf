@@ -1,3 +1,8 @@
+resource "random_password" "password" {
+  length           = 32
+  override_special = "!#%&*()-_=+[]{}<>:?"
+}
+
 # resource "azurerm_mssql_server" "mssql" {
 #   name                          = "sql-georeplica-australiaeast"
 #   resource_group_name           = data.azurerm_resource_group.rg.name
