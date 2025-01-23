@@ -1,3 +1,9 @@
+
+import {
+  id = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${data.azurerm_resource_group.rg.name}/providers/Microsoft.Sql/servers/sql-georeplica-australiaeast/databases/sqldb-georeplica-primary-australiaeast"
+  to = azurerm_mssql_database.primary
+}
+
 resource "azurerm_mssql_database" "primary" {
   name           = "sqldb-georeplica-australiaeast"
   server_id      = azurerm_mssql_server.mssql.id
@@ -9,6 +15,11 @@ resource "azurerm_mssql_database" "primary" {
 }
 
 # This is the secondary database that will be created as a replica of the primary
+
+import {
+  id = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${data.azurerm_resource_group.rg.name}/providers/Microsoft.Sql/servers/sql-georeplica-australiaeast/databases/sqldb-georeplica-secondary-australiaeast"
+  to = azurerm_mssql_database.secondary
+}
 resource "azurerm_mssql_database" "secondary" {
   name                        = "sqldb-georeplica-secondary-australiaeast"
   server_id                   = azurerm_mssql_server.mssql.id
