@@ -11,7 +11,7 @@ resource "azurerm_mssql_server" "mssql" {
   version                       = "12.0"
   administrator_login           = var.mssql_administrator_login
   administrator_login_password  = random_password.password.result
-  public_network_access_enabled = false
+  public_network_access_enabled = true
 
   identity {
     type = "SystemAssigned"
@@ -24,9 +24,9 @@ resource "azurerm_mssql_server" "mssql" {
 }
 
 # Can't have this if public_network_access_enabled is false
-# resource "azurerm_mssql_firewall_rule" "azure_services" {
-#   name             = "AllowAzure"
-#   server_id        = azurerm_mssql_server.mssql.id
-#   start_ip_address = "0.0.0.0"
-#   end_ip_address   = "0.0.0.0"
-# }
+resource "azurerm_mssql_firewall_rule" "azure_services" {
+  name             = "AllowAzure"
+  server_id        = azurerm_mssql_server.mssql.id
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "0.0.0.0"
+}
