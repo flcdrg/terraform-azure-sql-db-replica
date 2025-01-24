@@ -1,5 +1,8 @@
 
 import {
+  for_each = var.enable_import ? {
+    "enabled" = true
+  } : {}
   id = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/rg-georeplica-australiaeast/providers/Microsoft.Sql/servers/sql-georeplica-australiaeast/databases/sqldb-georeplica-australiaeast"
   to = azurerm_mssql_database.primary
 }
@@ -17,6 +20,9 @@ resource "azurerm_mssql_database" "primary" {
 # This is the secondary database that will be created as a replica of the primary
 
 import {
+  for_each = var.enable_import ? {
+    "enabled" = true
+  } : {}
   id = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/rg-georeplica-australiaeast/providers/Microsoft.Sql/servers/sql-georeplica-australiaeast/databases/sqldb-georeplica-secondary-australiaeast"
   to = azurerm_mssql_database.secondary
 }

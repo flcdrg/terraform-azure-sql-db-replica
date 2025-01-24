@@ -7,3 +7,9 @@ variable "mssql_azuread_administrator_object_id" {
 variable "mssql_administrator_login" {
   type = string
 }
+
+variable "enable_import" {
+  type        = bool
+  description = "Enable import of existing resources"
+  default     = false
+}
